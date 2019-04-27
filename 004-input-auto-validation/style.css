@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a, i, span, p, li, b,
+strong, label, input, textarea, button, label, select, option {
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    color: inherit;
+    line-height: inherit;
+}
+
+body {
+    font-size: 1em;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+input {
+    outline: none;
+}
+
+.field {
+    position: relative;
+    width: 400px;
+    transition: all 0.3s ease;
+    --primaryColor: #3F51B5;
+    --invalidColor: #f46363;
+    --validColor: #1eb87c;
+}
+input {
+    display: block;
+    background: transparent;
+    box-shadow: inset 0 0 0 var(--borderWidth, 1px) var(--fieldColor, rgb(230,230,230));
+    width: 100%;
+    padding: 28px 30px 8px 60px;
+    border: none;
+    font-size: 0.9em;
+    transition: inherit;
+    border-radius: 6px;
+}
+svg {
+    left: 22px;
+    height: 20px;
+    width: 20px;
+    fill: rgb(185,185,185);
+}
+label {
+    left: 60px;
+    color: rgb(175,175,175);
+    line-height: 0;
+    transition: inherit;
+    cursor: pointer;
+}
+span {
+    height: 5px;
+    width: 5px;
+    background: var(--primaryColor);
+    content: "";
+    right: 22px;
+    border-radius: 50%;
+    transition: inherit;
+}
+
+/** Vertical align center **/
+svg, label, span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/** Valid-invalid message validation */
+label:after, label:before {
+    content: attr(data-error);
+    position: absolute;
+    white-space: nowrap;
+    left: 0;
+    opacity: 0;
+    transition: inherit;
+    font-weight: 500;
+    color: var(--invalidColor);
+}
+label:before {
+    content: attr(data-valid);
+    color: var(--validColor);
+}
+
+/** When field is focused and not empty **/
+input:focus, input:not(:placeholder-shown) {
+    --fieldColor: var(--primaryColor);
+    --borderWidth: 2px;
+}
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+    transform: translateY(-9px);
+    font-size: 0.75em;
+    color: var(--primaryColor);
+}
+input:not(:placeholder-shown) ~ label {
+    color: transparent;
+}
+
+/** When field is valid **/
+input:not(:placeholder-shown):valid {
+    --fieldColor : var(--validColor);
+}
+input:not(:placeholder-shown):valid ~ label:before {
+    opacity: 1;
+}
+input:not(:placeholder-shown):valid ~ span {
+    background: var(--validColor);
+}
+
+/** When field is invalid **/
+input:not(:placeholder-shown):invalid {
+    --fieldColor: var(--invalidColor);
+}
+input:not(:placeholder-shown):invalid ~ label:after {
+    opacity: 1;
+}
+input:not(:placeholder-shown):invalid ~ span {
+    background: var(--invalidColor);
+}
