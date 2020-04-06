@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a, i, span, p, li, b,
+strong, label, input, textarea, button, label, select, option {
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    color: inherit;
+    line-height: inherit;
+}
+
+body {
+    font-size: 1em;
+    height: 100vh;
+}
+
+
+.transition {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bar {
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 100%;
+    position: absolute;
+    animation: rotate 2s ease forwards;
+}
+
+.bar:nth-child(2) {
+    animation-delay: .5s;
+    animation-duration: 2.5s;
+}
+.bar:nth-child(3) {
+    animation-duration: 2.2s;
+    animation-delay: 1s;
+}
+.bar:nth-child(4) {
+    animation-delay: 1.2s;
+    animation-duration: 2s;
+}
+
+@keyframes rotate {
+    0% {
+        left: 0;
+        right: 100%;
+    }
+    60% {
+        right: 0;
+        left: 0;
+    }
+    100% {
+        right: 0;
+        left: 100%;
+    }
+}
